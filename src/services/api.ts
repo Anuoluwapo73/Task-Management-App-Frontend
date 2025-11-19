@@ -19,7 +19,7 @@ export const setToastError = (fn: (message: string) => void) => {
  * Base URL defaults to http://localhost:3000 or uses VITE_API_URL environment variable
  */
 const apiClient = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:4545',
+    baseURL: import.meta.env.VITE_API_URL || 'https://task-management-app-backend-j2jm.onrender.com/',
     headers: {
         'Content-Type': 'application/json',
     },
