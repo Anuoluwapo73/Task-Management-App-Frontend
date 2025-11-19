@@ -1,5 +1,11 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
+import type { InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 import { getAccessToken, clearAuth } from '../utils/storage';
+
+// Type for API error responses
+interface ApiErrorResponse {
+    message?: string;
+}
 
 // Store toast function reference to avoid circular dependency
 let toastErrorFn: ((message: string) => void) | null = null;
@@ -23,14 +29,14 @@ const apiClient = axios.create({
  * Request interceptor to automatically attach access token to Authorization header
  */
 apiClient.interceptors.request.use(
-    (config) => {
+    (config: InternalAxiosRequestConfig) => {
         const token = getAccessToken();
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
         return config;
     },
-    (error) => {
+    (error: AxiosError) => {
         return Promise.reject(error);
     }
 );
@@ -40,10 +46,10 @@ apiClient.interceptors.request.use(
  * Handles various error scenarios with appropriate user feedback
  */
 apiClient.interceptors.response.use(
-    (response) => {
+    (response: AxiosResponse) => {
         return response;
     },
-    (error) => {
+    (error: AxiosError<ApiErrorResponse>) => {
         // Network error (no response from server)
         if (!error.response) {
             const networkMessage = error.message === 'Network Error'
