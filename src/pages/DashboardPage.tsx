@@ -75,18 +75,18 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ filter }) => {
 
   return (
     <DashboardLayout>
-      <div className="space-y-6 relative">
+      <div className="space-y-4 sm:space-y-6 relative">
         {/* Header with Create Button */}
-        <header className="flex justify-between items-center bg-white rounded-xl p-6 shadow-xl">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">My Tasks</h1>
-            <p className="text-sm text-gray-600 mt-1">Organize and track your work efficiently</p>
+        <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white rounded-xl p-4 sm:p-6 shadow-xl">
+          <div className="flex-1">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">My Tasks</h1>
+            <p className="text-xs sm:text-sm text-gray-600 mt-1">Organize and track your work efficiently</p>
           </div>
           <Button
             variant="primary"
             onClick={() => setIsCreateModalOpen(true)}
             aria-label="Create a new task"
-            className="shadow-lg"
+            className="shadow-lg w-full sm:w-auto"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
