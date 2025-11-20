@@ -48,6 +48,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const login = async (credentials: LoginCredentials): Promise<void> => {
         const response = await authService.login(credentials);
         
+
+        console.log(response)
         // Store tokens and user
         setAccessToken(response.accessToken);
         setRefreshToken(response.refreshToken);

@@ -11,8 +11,8 @@ const authService = {
      * @returns Promise with authentication response containing user, accessToken, and refreshToken
      */
     async login(credentials: LoginCredentials): Promise<AuthResponse> {
-        const response = await apiClient.post<AuthResponse>('/api/auth/login', credentials);
-        return response.data;
+        const response = await apiClient.post<{ data: AuthResponse }>('/api/auth/login', credentials);
+        return response.data.data;
     },
 
     /**
@@ -21,8 +21,8 @@ const authService = {
      * @returns Promise with authentication response containing user, accessToken, and refreshToken
      */
     async signup(credentials: SignupCredentials): Promise<AuthResponse> {
-        const response = await apiClient.post<AuthResponse>('/api/auth/signup', credentials);
-        return response.data;
+        const response = await apiClient.post<{ data: AuthResponse }>('/api/auth/signup', credentials);
+        return response.data.data;
     },
 };
 
