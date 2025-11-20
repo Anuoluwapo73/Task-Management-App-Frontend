@@ -10,7 +10,7 @@ const taskService = {
      * @returns Promise with tasks response containing array of tasks
      */
     async getAllTasks(): Promise<TasksResponse> {
-        const response = await apiClient.get<TasksResponse>('/api/task');
+        const response = await apiClient.get<TasksResponse>('/api/tasks');
         return response.data;
     },
 
@@ -20,7 +20,7 @@ const taskService = {
      * @returns Promise with task response containing the created task
      */
     async createTask(input: CreateTaskInput): Promise<TaskResponse> {
-        const response = await apiClient.post<TaskResponse>('/api/task', input);
+        const response = await apiClient.post<TaskResponse>('/api/tasks', input);
         return response.data;
     },
 
@@ -31,7 +31,7 @@ const taskService = {
      * @returns Promise with task response containing the updated task
      */
     async updateTask(id: string, input: UpdateTaskInput): Promise<TaskResponse> {
-        const response = await apiClient.put<TaskResponse>(`/api/task/${id}`, input);
+        const response = await apiClient.put<TaskResponse>(`/api/tasks/${id}`, input);
         return response.data;
     },
 
@@ -41,7 +41,7 @@ const taskService = {
      * @returns Promise with task response
      */
     async deleteTask(id: string): Promise<TaskResponse> {
-        const response = await apiClient.delete<TaskResponse>(`/api/task/${id}`);
+        const response = await apiClient.delete<TaskResponse>(`/api/tasks/${id}`);
         return response.data;
     },
 
@@ -51,7 +51,7 @@ const taskService = {
      * @returns Promise with task response containing the updated task
      */
     async markAsCompleted(id: string): Promise<TaskResponse> {
-        const response = await apiClient.patch<TaskResponse>(`/api/task/complete/${id}`);
+        const response = await apiClient.patch<TaskResponse>(`/api/tasks/complete/${id}`);
         return response.data;
     },
 
@@ -61,7 +61,7 @@ const taskService = {
      * @returns Promise with task response containing the updated task
      */
     async markAsInProgress(id: string): Promise<TaskResponse> {
-        const response = await apiClient.patch<TaskResponse>(`/api/task/in-progress/${id}`);
+        const response = await apiClient.patch<TaskResponse>(`/api/tasks/in-progress/${id}`);
         return response.data;
     },
 
@@ -71,7 +71,7 @@ const taskService = {
      * @returns Promise with task response containing the updated task
      */
     async markAsPending(id: string): Promise<TaskResponse> {
-        const response = await apiClient.patch<TaskResponse>(`/api/task/pending/${id}`);
+        const response = await apiClient.patch<TaskResponse>(`/api/tasks/pending/${id}`);
         return response.data;
     },
 };
