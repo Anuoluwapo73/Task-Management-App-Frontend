@@ -21,7 +21,7 @@ export const setToastError = (fn: (message: string) => void) => {
 const apiClient = axios.create({
     baseURL: import.meta.env.VITE_API_URL || 'https://task-management-app-backend-sajn.onrender.com',
     headers: { 'Content-Type': 'application/json' },
-     withCredentials: true,
+    withCredentials: true,
 });
 
 
@@ -67,9 +67,21 @@ apiClient.interceptors.response.use(
         // Handle different HTTP status codes
         switch (status) {
             case 401:
-                // Unauthorized - clear auth and redirect to login
-                clearAuth();
-                window.location.href = '/login';
+                // Unauthorized - log the error details first
+                console.error('401 Unauthorized Error Details:', {
+                    url: error.config?.url,
+                    method: error.config?.method,
+                    headers: error.config?.headers,
+                    responseData: data,
+                    fullError: error
+                });
+
+                // Wait 3 seconds before clearing auth so you can see the error
+                setTimeout(() => {
+                    clearAuth();
+                    window.location.href = '/login';
+                }, 3000);
+
                 if (toastErrorFn) {
                     toastErrorFn('Session expired. Please log in again.');
                 }
