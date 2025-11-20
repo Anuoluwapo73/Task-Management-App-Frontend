@@ -21,6 +21,7 @@ export const setToastError = (fn: (message: string) => void) => {
 const apiClient = axios.create({
     baseURL: import.meta.env.VITE_API_URL || 'https://task-management-app-backend-sajn.onrender.com',
     headers: { 'Content-Type': 'application/json' },
+     withCredentials: true,
 });
 
 
